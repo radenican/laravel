@@ -1,28 +1,44 @@
-<header id="site-header" class="site-header" role="banner">
-    <div class="container">
-        <div class="site-logo-wrap">
-            <hgroup>
-                <h1 class='site-title site-title-no-desc'> <a  style="color:#FFFFFF;" href='{{ route('home') }}' title='{{ config('app.name', 'Laravel Shops') }}' rel='home'>{{ config('app.name', 'Laravel Shops') }}</a></h1>
-            </hgroup>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
         </div>
-        <nav id="primary-nav" class="primary-nav" role="navigation">
-            <ul id="menu-gd-menu" class="menu">
-            @can('user_management_access')
-            <li class="gd-menu-item menu-item menu-item-type-post_type_archive"><a href="{{ route('admin.users.index') }}">Manage User</a></li>
-            @endcan
+        <div class="sidebar-brand-text mx-3">User Map </div>
+      </a>
 
-                @guest
-                    <li class="gd-menu-item menu-item menu-item-type-post_type_archive"><a href="{{ route('login') }}">Login</a></li>
-                    <!-- <li class="gd-menu-item menu-item menu-item-type-post_type_archive"><a href="{{ route('register') }}">Register</a></li> -->
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-                @else
-                    <li class="gd-menu-item menu-item menu-item-type-post_type_archive"><a href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Logout</a></li>
-                    <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+      <!-- Nav Item - Dashboard -->
+      @can('user_management_access')
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{{ route('admin.users.index') }}">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Manage User</span>
+        </a>
+        </li>
+      @endcan
+
+      @guest
+      <li class="nav-item">
+        <a class="nav-link collapsed"  href="{{ route('login') }}">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Login</span>
+        </a>
+        </li>
+      @else
+      <li class="nav-item ">
+        <a class="nav-link"  href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" >
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span> logout
+                  </span></a>
+                  <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
-                @endguest
-            </ul>
-        </nav>
-        <div class="dt-nav-toggle  dt-mobile-nav-button-wrap"><a href="#primary-nav"><i class="fas fa-bars"></i></a></div>
-    </div>
-</header>
+      </li>
+      @endguest
+     
+    </ul>
+   
